@@ -1,0 +1,35 @@
+
+<div class="max-w-md mx-auto bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md flex justify-center items-center">
+  <form [formGroup]="universiteForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="grid md:grid-cols-1 md:gap-3" style="max-width: 50%;">
+  
+      <div class="relative z-0 w-full mb-5 group">
+        <h1 class="font-medium">Ajouter Université</h1>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="floating_nom_universite" class="block text-black font-medium">Nom de l'université</label>
+        <input type="text" formControlName="nomUniversite" id="floating_nom_universite" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-blue-500 dark:text-black dark:border-gray-600 dark:focus:border-blue-500 dark:bg-gray-800" placeholder="Saisissez le nom de l'université" required />
+        <div *ngIf="universiteForm.get('nomUniversite')?.errors" class="text-red-500 text-sm mt-1">
+          <div *ngIf="universiteForm.get('nomUniversite')?.hasError('required')">Le nom de l'université est obligatoire.</div>
+          <div *ngIf="universiteForm.get('nomUniversite')?.hasError('maxLength')">Le nom de l'université ne doit pas dépasser 50 caractères.</div>
+          <div *ngIf="universiteForm.get('nomUniversite')?.hasError('pattern')">Le nom de l'université ne doit contenir que des lettres et des espaces.</div>
+          <div *ngIf="universiteForm.get('nomUniversite')?.hasError('uniqueName')">Le nom de l'université doit être unique.</div>
+        </div>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="floating_adresse" class="block text-black font-medium">Adresse de l'université</label>
+        <input type="text" formControlName="adresse" id="floating_adresse" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-blue-500 dark:text-black dark:border-gray-600 dark:focus:border-blue-500 dark:bg-gray-800" placeholder="Saisissez l'adresse de l'université" required />
+        <div *ngIf="universiteForm.get('adresse')?.errors" class="text-red-500 text-sm mt-1">
+          <div *ngIf="universiteForm.get('adresse')?.hasError('required')">L'adresse de l'université est obligatoire.</div>
+          <div *ngIf="universiteForm.get('adresse')?.hasError('maxLength')">L'adresse de l'université ne doit pas dépasser 50 caractères.</div>
+        </div>
+      </div>
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="nomFoyer" class="block text-black font-medium">Sélectionnez le foyer</label>
+        <select formControlName="nomFoyer" id="select_foyer" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-blue-500 dark:text-black dark:border-gray-600 dark:focus:border-blue-500 dark:bg-gray-800">
+          <option *ngFor="let nomFoyer of foyerNames" [value]="nomFoyer">{{ nomFoyer }}</option>
+        </select>
+      </div>
+      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter Université</button>
+    </form>
+  </div>
+  

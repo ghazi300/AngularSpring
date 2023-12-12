@@ -1,0 +1,21 @@
+<!-- foyer-details.component.html -->
+
+<div *ngIf="foyerDetails" class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <div class="text-center">
+              <img src="assets/img/maxresdefault.jpg" class="img-fluid rounded-circle" alt="Image Alt Text">
+            </div>
+            <h2 class="card-title text-center text-4xl font-bold my-4">{{ foyerDetails.nomFoyer }}</h2>
+            <p class="card-text text-xl">Capacité: {{ foyerDetails.capaciteFoyer }}</p>
+            <button [routerLink]="['/front/universities/list-bloc', foyerDetails.nomFoyer]" class="btn btn-primary btn-lg mt-4">
+              View Blocs
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

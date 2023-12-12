@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mt-10 mx-auto">
+      <div class="text-container">
+        <div class="text-center">
+          <h3>Update Reservation</h3>
+          <form (ngSubmit)="onSubmit()"  #m="ngForm">
+            <div class="form_group" *ngIf="reservation ">
+              <label>Num chambre : </label>
+              <input type="text" class="form-control" id="numeroChambre"
+                     [(ngModel)]="reservation.numeroChambre" name="numeroChambre" ngModel required #k="ngModel">
+              <div class="alert alert-danger" *ngIf="k.invalid && k.touched">
+                the Number of Chambre is a requierd field !!
+              </div>
+            </div>
+            <div class="form_group" *ngIf="reservation ">
+              <label>Type Chambre:</label>
+              <select class="form-control" id="typeChambre" [(ngModel)]="reservation.typeChambre" name="typeChambre" ngModel required #c="ngModel">
+                <option value="SIMPLE" >Simple</option>
+                <option value="DOUBLE">Double</option>
+                <option value="TRIPLE" >Triple</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="c.invalid && c.touched">
+                Type Chambre is a requierd Field  !!
+              </div>
+            </div>
+
+
+            <button class="btn btn-warning" type="submit" (click)="retour()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <button class="btn btn-info" type="submit" [disabled]="m.invalid"><i class="fa fa-paper-plane" aria-hidden="true" ></i></button>&nbsp;
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

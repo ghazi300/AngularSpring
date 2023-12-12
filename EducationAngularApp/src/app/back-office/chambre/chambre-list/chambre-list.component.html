@@ -1,0 +1,105 @@
+<div class="flex justify-center items-center h-screen ">
+  <div class="shadow-lg rounded-lg  w-full max-w-xl" style="max-width: 70%;" >
+
+  <div class="overflow-x-auto rounded-lg">
+    <div class="inline-block min-w-full align-middle">
+      <div class="overflow-hidden shadow sm:rounded-lg ">
+
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+
+
+
+          <thead class="bg-gray-50 dark:bg-gray-700">
+            <tr>
+
+              <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                Bloc
+              </th>
+              <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                Room
+              </th>
+              <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                Type
+              </th>
+              <th>
+                <div class="relative">
+                  <input
+                    type="text"
+                    id="nomBlocFilter"
+                    [(ngModel)]="nomBlocFilter"
+                    class="mt-0 p-2 rounded-md bg-gray-50 dark:bg-gray-700 border-none text-white"
+                    style="width: 80px;  border-color: transparent; outline: none;"
+                    placeholder="Search"
+                    (input)="applyFilter()"
+                  />
+                  <div class="absolute inset-y-0 inset-x-16  right-0 flex items-center pr-2 pointer-events-none">
+                    <svg
+                      class="h-4 w-4 text-gray-400 dark:text-gray-600"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" />
+                      <circle cx="10" cy="10" r="7" />
+                      <line x1="21" y1="21" x2="15" y2="15" />
+                    </svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                 <svg routerLink="/back/chambre/addChambre" style="cursor: pointer;"  class="h-8 w-8 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />  <line x1="12" y1="8" x2="12" y2="16" />  <line x1="8" y1="12" x2="16" y2="12" /></svg>
+              </th>
+
+<th></th>
+            </tr>
+          </thead>
+          <tbody class="bg-gray-200 dark:bg-gray-100"  *ngFor="let c of filteredChambres">
+
+
+
+            <tr>
+              <td class="p-4 text-sm font-normal text-gray whitespace-nowrap dark:text-gary">
+                <b>
+                   Bloc : {{ c.nomBloc }}
+               </b>
+              </td>
+
+              <td class="p-4 text-sm font-normal text-gray whitespace-nowrap dark:text-gray">
+               <b>
+                N° {{ c.numChambre }}
+               </b>
+              </td>
+              <td class="p-4 text-sm font-normal text-gray whitespace-nowrap dark:text-gray">
+                <b>{{ c.typeChambre }}</b>
+              </td>
+              <td class="p-4 whitespace-nowrap">
+                 <svg  [routerLink]="['/back/chambre/editchambre',c.idChambre]" style="cursor: pointer;" class="h-8 w-8 text-green-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />  <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" /></svg>
+              </td>
+                <td>
+                  <svg   (click)="delete(c.idChambre)" class="h-8 w-8 text-red-500" style="cursor: pointer;"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" /></svg>
+
+                </td>
+                <td>
+
+                </td>
+
+            </tr>
+
+
+
+
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,35 @@
+<div class="max-w-md mx-auto mt-8 bg-white shadow-lg rounded px-8 py-6 w-full max-w-md">
+  <h2 class="text-2xl font-semibold mb-6 text-center">Reservation Form</h2>
+  <form (ngSubmit)="ajouterReservation()" #f="ngForm">
+    <div class="mb-4">
+      <label for="anneeUniversaire" class="block text-gray-700 text-sm font-bold mb-2">Anne de Reservation</label>
+      <input type="date" class="form-control" id="anneeUniversaire" name="anneeUniversaire" [(ngModel)]="Reservations.anneeUniversaire" ngModel required #b="ngModel">
+      <div class="alert alert-danger" *ngIf="b.invalid && b.touched">L'année est obligatoire !!</div>
+    </div>
+
+    <div class="mb-4">
+      <label for="chambre" class="block text-gray-700 text-sm font-bold mb-2">Choose a Chambre:</label>
+      <select class="form-control" id="chambre" name="selectedChambre" [(ngModel)]="selectedChambre" ngModel required #n="ngModel">
+        <option *ngFor="let chambre of notReservedRooms" [ngValue]="chambre">
+          {{ chambre.numeroChambre }} - {{ chambre.typeChambre }}
+        </option>
+      </select>
+      <div class="alert alert-danger" *ngIf="n.invalid && n.touched">The Chambre est obligatoire !!</div>
+    </div>
+
+    <div class="mb-4">
+      <label for="etudiant" class="block text-gray-700 text-sm font-bold mb-2">Your Email:</label>
+      <select class="form-control" id="etudiant" name="selectedEtudiant" [(ngModel)]="selectedEtudiant" ngModel required #l="ngModel">
+        <option *ngFor="let etudiant of EtudiantWithoutReservation" [ngValue]="etudiant">
+          {{ etudiant.email }}
+        </option>
+      </select>
+      <div class="alert alert-danger" *ngIf="l.invalid && l.touched">The Chambre est obligatoire !!</div>
+    </div>
+
+    <div class="flex justify-between items-center">
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Save <i class="fa fa-plus" aria-hidden="true"></i></button>
+      <button class="btn btn-warning" type="submit" (click)="retour()">Back <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+    </div>
+  </form>
+</div>

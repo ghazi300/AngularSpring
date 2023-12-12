@@ -1,0 +1,29 @@
+<!-- university-cart.component.html -->
+<br>
+<div>
+  <div class="product-section mt-150 mb-150">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="section-title">
+            <h3><span class="orange-text">Our</span> Universities</h3>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center items-center py-20">
+        <div class="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 space-y-4 md:space-y-0">
+          <div *ngFor="let universite of universites; let i = index" class="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+            <!-- Utilisez un tableau d'URL d'images et accédez à l'URL correspondant à l'index actuel -->
+            <img [src]="universityImages[i]" class="card-img-top w-75 mx-auto" alt="Image Alt Text">
+            <h3 class="mb-3 text-xl font-bold">{{ universite.nomUniversite }}</h3>
+            <h1 class="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">{{ universite.adresse }}</h1>
+            <div class="my-4">
+              <p>{{ universite.nomFoyer || 'Aucun foyer' }}</p>
+              <button [routerLink]="['/front/universities/foyer-details', universite.nomFoyer]" class="bg-blue-500 text-white py-2 px-4 rounded-full">View Details Foyer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

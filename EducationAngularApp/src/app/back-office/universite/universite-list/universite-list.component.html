@@ -1,0 +1,63 @@
+<!-- universite-list.component.html -->
+
+<div class="flex flex-col items-center justify-center h-screen mt-24">
+  <div class="shadow-lg rounded-lg w-full max-w-4xl p-6">
+
+    <div class="overflow-x-auto">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher par nom d'université" class="p-2 border rounded mb-4">
+
+      <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600 border border-gray-300 dark:border-gray-600">
+        <thead class="bg-gray-100 dark:bg-gray-800">
+          <tr>
+            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white">
+              Nom Université
+            </th>
+            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white">
+              Adresse
+            </th>
+            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white">
+              Foyer
+            </th>
+            <th scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white">
+              Actions
+            </th>
+            <th class="p-4 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white"></th>
+          </tr>
+        </thead>
+
+        <tbody class="bg-gray-200 dark:bg-gray-100">
+          <tr *ngFor="let universite of applyFilter()">
+            <td class="p-4 text-sm font-normal text-gray whitespace-nowrap dark:text-gray">
+              {{ universite.nomUniversite }}
+            </td>
+            <td class="p-4 text-sm font-normal text-gray whitespace-nowrap dark:text-gray">
+              {{ universite.adresse }}
+            </td>
+            <td class="p-4 whitespace-nowrap">
+              <div *ngIf="universite.nomFoyer === null; else affecterDesaffecterBlock">
+                <select [(ngModel)]="universite.selectedFoyer" class="p-2 border rounded">
+                  <option *ngFor="let foyerName of foyerNames" [value]="foyerName">{{ foyerName }}</option>
+                </select>
+                <button (click)="affecterFoyer(universite.selectedFoyer, universite.idUniversite)" class="bg-blue-500 text-white py-1 px-2 rounded-full text-xs ml-1">Affecter</button>
+              </div>
+              <ng-template #affecterDesaffecterBlock>
+                <div>
+                  {{ universite.nomFoyer || 'Aucun foyer' }}
+                  <button (click)="desaffecterFoyer(universite.idUniversite)" class="bg-red-500 text-white py-1 px-2 rounded-full text-xs ml-1">Désaffecter</button>
+                </div>
+              </ng-template>
+            </td>
+            <td class="p-4 whitespace-nowrap">
+              <button *ngIf="universite.idUniversite !== undefined" [routerLink]="['/back/universite/edit', universite.idUniversite]" class="bg-green-500 text-white py-1 px-2 rounded-full text-xs mb-1">Update</button>
+              <button *ngIf="universite.idUniversite !== undefined" (click)="delete(universite.idUniversite)" class="bg-red-500 text-white py-1 px-2 rounded-full text-xs mb-1">Delete</button>
+            </td>
+            <td class="p-4"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="mt-4">
+      <a routerLink="/back/universite/add" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Add</a>
+    </div>
+
